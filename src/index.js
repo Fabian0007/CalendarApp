@@ -1,17 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import Header from './components/Header';
-import './scss/app.scss'
+import './scss/app.scss';
 
 const Page = (props) => {
-        return <div>
-            <Header/>
-            <div className="container">
-                <h1>{props.message}</h1>
-            </div>
-        </div>
-}
+  const { message } = props;
+  return (
+    <div>
+      <Header />
+      <div className="container">
+        <h1>{message}</h1>
+      </div>
+    </div>
+  );
+};
 
-let App = document.getElementById("app");
+Page.propTypes = { message: PropTypes.string };
+Page.defaultProps = { message: 'Developing Calendar' };
+const App = document.getElementById('app');
 
-ReactDOM.render(<Page message="Developing Calendar" />, App);
+ReactDOM.render(<Page />, App);
