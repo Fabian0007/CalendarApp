@@ -1,17 +1,17 @@
-import React, { useContext, useReducer } from 'react';
-import { fromJS } from 'immutable';
-import reducers from '../reducers/global';
-import Header from '../components/Header';
-import '../scss/app.scss';
+import React from 'react';
+import moment from 'moment';
+import { createCalendarMonth } from '../utils/util';
 
-export const Global = React.createContext({});
 
-export default () => {
-  const globalStore = fromJS(useContext(Global));
-  const [state, dispatch] = useReducer(reducers, globalStore);
-  return (
-    <Global.Provider value={{ state, dispatch }}>
-      <Header />
-    </Global.Provider>
-  );
-};
+const initialStartWeek = moment().startOf('month').add(0, 'month').week();
+const initialEndWeek = moment().endOf('month').add(0, 'month').week();
+const currentMonth = createCalendarMonth(initialStartWeek, initialEndWeek);
+
+export const Global = React.createContext({
+  currentMonthIndex: 0,
+  month: currentMonth,
+  year: { 0: currentMonth },
+  yearValue: 0,
+});
+
+export default Global;
