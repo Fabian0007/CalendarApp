@@ -52,7 +52,7 @@ const CalendarContainer = () => {
             >
               {weekday.date.format('D')}
             </div>
-            {weekday.reminders.map(reminder => (
+            {weekday.reminders.sort((a, b) => a.startTime - b.startTime).map(reminder => (
               <ReminderItem
                 key={reminder.uuid}
                 reminder={reminder}
