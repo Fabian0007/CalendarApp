@@ -12,6 +12,7 @@ export const Global = React.createContext({
   month: currentMonth,
   year: { 0: currentMonth },
   yearValue: 0,
+  modal: false,
 });
 
 export default Global;
