@@ -9,11 +9,11 @@ const propTypes = {
 
 const CalendarNav = ({ currentMonthTitle, nextMonthAction, prevMonthAction }) => (
   <div className="calendar__nav">
-    <button type="button" onClick={prevMonthAction}>◀</button>
+    <button type="button" onClick={prevMonthAction}>&lt;</button>
+    <button type="button" onClick={nextMonthAction}>&gt;</button>
     <h2>
       {currentMonthTitle}
     </h2>
-    <button type="button" onClick={nextMonthAction}>▶</button>
   </div>
 );
 

@@ -2,9 +2,7 @@ body {
     background-color: #fefefe;
     text-align: center;
     .navbar {
-      background: #0e0505;
-      color: #E7DACB;
-      height: 50px;
+      float: left;
     }
     h1 {
       font-size: 40px;
@@ -14,16 +12,15 @@ body {
     .calendar__nav {
       display: flex;
   
-      padding: 2rem 1rem;
-  
-      justify-content: center;
-      align-items: center;
+      padding: 1rem 1rem;
+      color: #3b3b3b;
+      
     }
   
     .calendar__nav h2 {
         font-size: 1.6rem;
         font-weight: 100;
-        width: 50%;
+        width: 20%;
         text-align: center;
     }
     .calendar__nav button {
@@ -34,6 +31,7 @@ body {
         text-align: center;
         border: 0;
         outline: 0;
+        background-color: Transparent;
     }
     
     /**
@@ -42,11 +40,17 @@ body {
     */
     .calendar__header {
       display: flex;
-      background-color: #5c5cff;
-      color: #ffffff;
+      color: #979797;
+      font-size: 14px;
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: #e9e9e9;
     }
     
     .calendar__header div {
+      border-left-width: 1px;
+      border-left-style: solid;
+      border-left-color: #e9e9e9;
       flex: 1;
     }
     
@@ -65,41 +69,151 @@ body {
     .week__day {
         position: relative;
     
-        padding: 1rem;
+        padding-top: 1rem;
     
         text-align: center;
     
         flex: 1;
 
-        border-width: 1px;
+        border-bottom-width: 1px;
 
-        border-style: solid;
-        
-        border-color: black;
+        border-left-width: 1px;
+
+        border-bottom-style: solid;
+
+        border-left-style: solid;
+
+        border-bottom-color: #e9e9e9;
+
+        border-left-color: #e9e9e9;
+
+        height: 100px;
     }
     
     .week__day {
       border-radius: 0;
+      color: #3b3b3b;
     }
     
     .week__day--today {
-      color: white;
-      background-color: #3e3e3e;
-    }
-    
-    .week__day--weekend {
-      color: #3e3e3e;
-      background-color: #f3f3f3;
-    }
-    
-    .week__day--past {
-      cursor: not-allowed;
-    
-      color: #cfcfcf;
-      background-color: #f7f8fb;
+      border-radius: 0;
+      color: #0000FF;
+      font-weight: bold;
     }
     
     .week__day--selected {
       cursor: pointer;
+    }
+
+    /**
+    * Reminders
+    *
+    */
+    .reminder__label {
+      width: 100%;
+      padding: 1px;
+      z-index:999;
+      position:relative;
+      background-color: #efefef;
+    }
+    
+    .reminder__label.reminder__label--black {
+        background-color: black;
+        color: white;
+    }
+    
+    .reminder__label.reminder__label--hard-gray {
+        background-color: #404040;
+        color: white;
+    }
+
+    .reminder__label.reminder__label--medium-gray {
+      background-color: #808080;
+      color: white;
+    }
+
+    .reminder__label.reminder__label--soft-gray {
+      background-color:#c0c0c0;
+      color: white;
+    }
+
+    .reminder__label.reminder__label--white {
+      background-color: white;
+      color: black;
+    }
+
+    .reminder__label.reminder__label--brown {
+      background-color: #980000;
+      color: white;
+    }
+
+    .reminder__label.reminder__label--red {
+      background-color: #ff0000;
+      color: white;
+    }
+
+    .reminder__label.reminder__label--orange {
+      background-color: #ff9900;
+      color: black;
+    }
+
+    .reminder__label.reminder__label--yellow {
+      background-color: #ffff00;
+      color: black;
+    }
+
+    .reminder__label.reminder__label--green {
+      background-color: #00ff00;
+      color: black;
+    }
+
+    .reminder__label.reminder__label--soft-blue {
+      background-color: #00ffff;
+      color: black;
+    }
+
+    .reminder__label.reminder__label--medium-blue {
+      background-color: #4a86e8;
+      color: white;
+    }
+
+    .reminder__label.reminder__label--blue {
+      background-color: #0000ff;
+      color: white;
+    }
+
+    .reminder__label.reminder__label--purple {
+      background-color: #9900ff;
+      color: white;
+    }
+
+    .reminder__label.reminder__label--pink {
+      background-color: #ff00ff;
+      color: white;
+    }
+
+    .full {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .color {
+      padding: 0;
+      width: 20px;
+      height: 20px;
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .color::-webkit-color-swatch {
+      border: none;
+      padding: 0;
+    }
+    .color::-webkit-color-swatch-wrapper {
+      border: none;
+      padding: 0;
     }
   }
