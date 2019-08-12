@@ -7,16 +7,20 @@ const propTypes = {
   color: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
   startTime: PropTypes.instanceOf(moment),
+  weather: PropTypes.string,
+  temperature: PropTypes.string,
 };
 
 const defaultProps = {
   text: '',
   color: '#4a86e8',
   startTime: moment(),
+  weather: '',
+  temperature: '',
 };
 
 function ReminderLabel({
-  text, startTime, color, handleClick,
+  text, startTime, color, handleClick, weather, temperature,
 }) {
   const labelClassList = ['reminder__label'];
   switch (color) {
@@ -82,6 +86,7 @@ function ReminderLabel({
       style={{ fontSize: 12 }}
     >
       {`${startTime.format('HH:mm')} ${text}`}
+      { temperature && weather && ` (${temperature} - ${weather})`}
     </div>
   );
 }

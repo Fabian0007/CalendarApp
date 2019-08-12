@@ -15,7 +15,6 @@ const defaultProps = {
 class ReminderItem extends React.Component {
   constructor (props) {
     super(props)
-
     this.state = {
       editing: this.props.reminder.newReminder,
       active: false,
@@ -24,6 +23,8 @@ class ReminderItem extends React.Component {
       city: this.props.reminder.city,
       startTime: this.props.reminder.startTime,
       open: this.props.modal,
+      weather: this.props.reminder.weather,
+      temperature: this.props.reminder.temperature,
     }
   }
 
@@ -37,14 +38,6 @@ class ReminderItem extends React.Component {
     this.setState({ ...updatedReminder, editing: false })
   }
 
-  handleColorChange = event => {
-    this.setState({ color: event.target.value })
-  }
-
-  handleChange = e => {
-    this.setState({ text: e.target.value })
-  }
-
   handleClick = () => {
     this.onOpenModal();
     this.setState({ active: !this.state.active, editing: true })
@@ -52,6 +45,7 @@ class ReminderItem extends React.Component {
 
   deleteReminder = () => {
     this.props.deleteReminder(this.props.weekIndex, this.props.weekdayIndex, this.props.reminder)
+    this.setState({ open: false });
   }
 
   onOpenModal = () => {
@@ -64,7 +58,6 @@ class ReminderItem extends React.Component {
 
   render () {
     const { open } = this.state;
-    console.log(open);
     return (
       <div className="reminder">
         <ReminderLabel
@@ -72,16 +65,17 @@ class ReminderItem extends React.Component {
           startTime={this.state.startTime}
           color={this.state.color}
           handleClick={this.handleClick}
+          weather={this.state.weather}
+          temperature={this.state.temperature}
         />
         <Modal open={open} onClose={this.onCloseModal} center>
           <ReminderForm
             text={this.state.text}
             color={this.state.color}
             city={this.state.city}
+            weather={this.state.weather}
             startTime={this.props.reminder.startTime}
             editing={this.state.editing}
-            onChange={this.handleChange}
-            onColorChange={this.handleColorChange}
             onSave={(reminder) => {
               this.handleSave(reminder);
               this.onCloseModal();
