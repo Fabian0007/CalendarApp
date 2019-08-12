@@ -12,3 +12,7 @@ Run `npm build` to build the project. The build artifacts will be stored in the 
 ## Running unit tests
 
 Run `npm test` to execute the unit tests via [Jest](https://github.com/facebook/jest).
+
+## Kanban Board of the Project available
+
+Go to section Projects here in GitHub.
