@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import api from '../api/WeatherResource';
 
 const propTypes = {
   onSave: PropTypes.func.isRequired,
@@ -15,6 +16,7 @@ const defaultProps = {
   text: '',
   color: '#5265ff',
   startTime: moment(),
+  city: '',
 }
 
 class CalendarReminderForm extends React.Component {
@@ -27,9 +29,14 @@ class CalendarReminderForm extends React.Component {
       color: this.props.color,
       startTime: this.props.startTime,
       city: this.props.city,
+      weather: this.props.weather,
     }
 
     this.toggleIsActive = this.toggleIsActive.bind(this)
+  }
+
+  to = (promise) => {
+    return promise.then(data => data).catch(() => null);
   }
 
   onColorChange = event => {
@@ -48,19 +55,26 @@ class CalendarReminderForm extends React.Component {
     this.setState({ active: !this.state.active })
   }
 
-  handleSubmit = event => {
+  handleSubmit = async(event) => {
     event.preventDefault()
     const { text, color, startTime, city } = this.state;
+    const request = { city };
+    let dataWeather = null;
+    if(city !== '') {
+      dataWeather = await this.to(api.get(request));
+    }
     const updatedReminder = {
       text,
       startTime,
       color,
       city,
+      temperature: !dataWeather ? '' : `${(parseInt(dataWeather.main.temp) - 273.15).toFixed(1)}°`,
+      weather: !dataWeather ? '' : dataWeather.weather[0].description,
       newReminder: false,
       open: false
-    }
-    this.setState({ editing: false })
-    this.props.onSave(updatedReminder)
+    };
+    this.setState({ editing: false });
+    this.props.onSave(updatedReminder);
   }
 
   onStartTimeChange = e => {
@@ -99,13 +113,19 @@ class CalendarReminderForm extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="reminderFormCity">City</label>
-          <input
+          <select
             type="text"
             id="reminderFormCity"
             className="form-control"
             value={this.state.city}
             onChange={this.onCityChange}
-          />
+          >
+            <option value =""></option>
+            <option value ="Cali,CO">Cali, Colombia</option>
+            <option value ="Medellín,CO">Medellín, Colombia</option>
+            <option value ="Bogotá,CO">Bogotá, Colombia</option>
+            <option value ="London,UK">Londres, Inglaterra</option>
+            </select> 
         </div>
         <div className="form-group">
           <label htmlFor="reminderFormColor">Color</label>

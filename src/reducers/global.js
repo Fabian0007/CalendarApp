@@ -74,6 +74,8 @@ export default function reducer(state, action) {
             .setIn(['newReminder'], action.payload.reminder.newReminder)
             .setIn(['color'], action.payload.reminder.color)
             .setIn(['city'], action.payload.reminder.city)
+            .setIn(['weather'], action.payload.reminder.weather)
+            .setIn(['temperature'], action.payload.reminder.temperature)
             .setIn(['startTime'], action.payload.reminder.startTime);
         }));
       });
